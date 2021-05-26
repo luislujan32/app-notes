@@ -1,6 +1,6 @@
 
 export default {
-	TOGGABLE: {
-		CANCEL_BUTTON: 'Exit'
-	}
+  TOGGABLE: {
+    CANCEL_BUTTON: 'Exit'
+  }
 }

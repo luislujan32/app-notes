@@ -12,11 +12,14 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "SKIP_PREFLIGHT_CHECK=true npm run build --workspace=app",
-    "start": "npm run start --workspace=api",
-    "dev:api": "npm run build && npm run dev --workspace=api"
+    "build": "cross-env NODE_ENV=development SKIP_PREFLIGHT_CHECK=true npm run build --workspace=app",
+    "start": "cross-env NODE_ENV=development npm run start --workspace=api",
+    "lint": "eslint ./api ./app",
+    "dev:app": "cross-env NODE_ENV=development SKIP_PREFLIGHT_CHECK=true npm run start --workspace=app",
+    "dev:api": "cross-env NODE_ENV=development npm run build && npm run dev --workspace=api"
   },
   "eslintConfig": {
+    "ignorePatterns": "build",
     "extends": "./node_modules/standard/eslintrc.json",
     "env": {
       "cypress/globals": true,
@@ -24,7 +27,11 @@
     },
     "plugins": [
       "cypress"
-    ]
+    ],
+    "rules": {
+      "no-tabs": 0,
+      "no-mixed-spaces-and-tabs": 0
+    }
   },
   "devDependencies": {
     "eslint-plugin-cypress": "2.11.2",
